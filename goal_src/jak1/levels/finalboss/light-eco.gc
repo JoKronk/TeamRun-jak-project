@@ -5,8 +5,6 @@
 ;; name in dgo: light-eco
 ;; dgos: FIN, L1
 
-(define-extern get-closest-interactive-target (function process-drawable target))
-
 ;; DECOMP BEGINS
 
 
@@ -648,7 +646,7 @@
                )
        )
       (('trigger)
-       (the-as int (when (and (not (-> self player-got-eco?)) *target* (= (get-closest-interactive-target (the-as process-drawable arg0)) *target*))
+       (the-as int (when (not (-> self player-got-eco?))
                      (set! (-> self player-got-eco?) #t)
                      (the-as int (send-event (ppointer->process (-> self parent)) 'white-eco-picked-up))
                      )
