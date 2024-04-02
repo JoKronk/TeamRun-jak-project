@@ -927,7 +927,9 @@
   )
 
 (defun remote-target-fake-cpad-circle-pressed? ((remote-target target))
-    (and (target-is-interactive? remote-target) (= (-> remote-target state name) 'target-attack))
+  (when remote-target
+    (= (-> remote-target state name) 'target-attack)
+    )
   )
 
 ;;This returns true or false depending on if all jaks are within a provided distance from an actor
