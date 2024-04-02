@@ -180,10 +180,6 @@
 
         (render-targets)
 
-        
-        ;; color ourselves
-        (color-target *target* (-> *self-player-info* color))
-
         )
       )
       (none)
