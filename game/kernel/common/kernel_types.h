@@ -94,7 +94,6 @@ struct TeamrunPlayerInfo {
   s32 debug_mode_active;
   s32 just_spawned;
   s32 just_loaded;
-  s32 just_saved;
   int cell_count;
   int buzzer_count;
   int money_count;
