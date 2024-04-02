@@ -233,9 +233,6 @@ add_subdirectory(third-party/SFML EXCLUDE_FROM_ALL)
 
 
 
-# websocketpp
-add_subdirectory(third-party/websocketpp EXCLUDE_FROM_ALL)
-include_directories(third-party/websocketpp)
 
 
 
