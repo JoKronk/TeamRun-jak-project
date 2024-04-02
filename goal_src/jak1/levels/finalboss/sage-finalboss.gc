@@ -6,8 +6,6 @@
 ;; dgos: FIN
 ;; DECOMP BEGINS
 
-(define-extern *in-finalboss-cutscene?* symbol)
-
 (define-extern check-allow-final-boss? (function symbol))
 
 
@@ -605,11 +603,7 @@
          )
         (else
           (set-blackout-frames 0)
-          (if *enable-ingame-cutscenes?*
-            (initialize! *game-info* 'game (the-as game-save #f) "title-start")
-            (start 'play (get-continue-by-name *game-info* "finalboss-start"))
-            )
-          (set! *in-finalboss-cutscene?* #f)
+          (initialize! *game-info* 'game (the-as game-save #f) "title-start")
           )
         )
       )
@@ -697,11 +691,8 @@
       ((= (current-status (-> self tasks)) (task-status need-reward-speech))
        (if (target-has-all-the-cells?)
            (set! (-> self kick-in-the-door) #t)
+           (start 'play (get-continue-by-name *game-info* "finalboss-start"))
            )
-        (when (not (target-has-all-the-cells?))
-          (start 'play (get-continue-by-name *game-info* "finalboss-start"))
-          (set! *in-finalboss-cutscene?* #f)
-          )
        )
       ((= (current-status (-> self tasks)) (task-status invalid))
        )
@@ -892,11 +883,7 @@
   :exit (behavior ()
     (when (= (current-status (-> self tasks)) (task-status invalid))
       (set-blackout-frames 0)
-      (if *enable-ingame-cutscenes?*
-        (initialize! *game-info* 'game (the-as game-save #f) "title-start")
-        (start 'play (get-continue-by-name *game-info* "finalboss-start"))
-        )
-      (set! *in-finalboss-cutscene?* #f)
+      (initialize! *game-info* 'game (the-as game-save #f) "title-start")
       )
     (none)
     )
