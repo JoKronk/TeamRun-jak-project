@@ -8,7 +8,7 @@
 (declare-type crate process-drawable)
 (declare-type crate-buzzer crate)
 
-(define-extern runs-on-crate-break (function string string int string none))
+(define-extern runs-on-crate-break (function string string string none))
 
 ;; DECOMP BEGINS
 
@@ -498,7 +498,6 @@
              (runs-on-crate-break 
               (the-as string (-> self name))
               (symbol->string (-> self defense))
-              (float->int (-> self fact pickup-amount))
               (symbol->string (-> *level* level (-> self draw level-index) name))
              )
 
@@ -560,7 +559,6 @@
              (runs-on-crate-break 
               (the-as string (-> self name))
               (symbol->string (-> self defense))
-              (float->int (-> self fact pickup-amount))
               (symbol->string (-> *level* level (-> self draw level-index) name))
               )
              
@@ -635,7 +633,6 @@
             (runs-on-crate-break 
               (the-as string (-> self name))
               (symbol->string (-> self defense))
-              (float->int (-> self fact pickup-amount))
               (symbol->string (-> *level* level (-> self draw level-index) name))
             )
              
@@ -647,7 +644,6 @@
             (runs-on-crate-break 
               (the-as string (-> self name))
               (symbol->string (-> self defense))
-              (float->int (-> self fact pickup-amount))
               (symbol->string (-> *level* level (-> self draw level-index) name))
             )
              
@@ -664,7 +660,6 @@
         (runs-on-crate-break
           (the-as string (-> self name)) 
           (symbol->string (-> self defense))
-          (float->int (-> self fact pickup-amount))
           (symbol->string (-> *level* level (-> self draw level-index) name))
         )
              
@@ -768,7 +763,6 @@
                   (runs-on-crate-break 
                     (the-as string (-> self name))
                     (symbol->string (-> self defense))
-                    (float->int (-> self fact pickup-amount))
                     (symbol->string (-> *level* level (-> self draw level-index) name))
                   )
              
