@@ -17,8 +17,7 @@ TeamrunPlayerInfo* gTeamrunInfo;
 // Create a server endpoint
 server ogSocket;
 websocketpp::connection_hdl connection;
-bool isConnectedOverSocket = false;
-bool isConnectedToGame = false;
+bool isConnected = false;
 
 typedef websocketpp::server<websocketpp::config::asio> server;
 
@@ -30,15 +29,12 @@ typedef server::message_ptr message_ptr;
 
 void on_open(websocketpp::connection_hdl hdl) {
   connection = hdl;
-  isConnectedOverSocket = true;
+  isConnected = true;
   lg::warn("Client connected");
-
-  if (sendReplConnectedUpdate)
-    send_position_update(false);
 }
 
 void on_close(websocketpp::connection_hdl) {
-  isConnectedOverSocket = false;
+  isConnected = false;
   lg::warn("Client disconnected");
 }
 
@@ -47,9 +43,6 @@ void on_fail(server* s, websocketpp::connection_hdl hdl) {
 }
 
 void on_json_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
-  if (!isConnectedToGame)
-    return;
-
   json response_json = json::parse(msg->get_payload());
 
   // update player positions
@@ -136,15 +129,11 @@ void connect_mp_info(u64 mpInfo, u64 selfPlayerInfo, u64 teamrunInfo) {
   gSelfPlayerInfo = Ptr<RemotePlayerInfo>(selfPlayerInfo).c();
   gTeamrunInfo = Ptr<TeamrunPlayerInfo>(teamrunInfo).c();
   lg::info("Multiplayer ready");
-  isConnectedToGame = true;
-
-  if (isConnectedOverSocket)
-    send_position_update(false);
 }
 
 
 void send_position_update(bool includeState) {
-  if (!isConnectedOverSocket || !isConnectedToGame)
+  if (!isConnected)
     return;
 
   // Construct JSON payload
