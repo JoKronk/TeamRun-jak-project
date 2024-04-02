@@ -80,8 +80,6 @@ void on_json_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg
           player->quat_z = field.value().get<float>();
         } else if (field.key().compare("quatW") == 0) {
           player->quat_w = field.value().get<float>();
-        } else if (field.key().compare("rotY") == 0) {
-          player->zoomer_rot_y = field.value().get<float>();
         } else if (field.key().compare("tgtState") == 0) {
           player->tgt_state = field.value();
         } else if (field.key().compare("mpState") == 0) {
@@ -163,7 +161,6 @@ void send_position_update() {
       {"quatY", gSelfPlayerInfo->quat_y},
       {"quatZ", gSelfPlayerInfo->quat_z},
       {"quatW", gSelfPlayerInfo->quat_w},
-      {"rotY", gSelfPlayerInfo->zoomer_rot_y},
       {"tgtState", gSelfPlayerInfo->tgt_state}
       }
     }
