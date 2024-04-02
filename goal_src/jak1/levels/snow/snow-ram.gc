@@ -308,30 +308,20 @@
     (when (and (not (task-complete? *game-info* (-> self entity extra perm task))) (-> self give-fuel-cell-anim))
       (logclear! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #t)
-      (if *enable-ingame-cutscenes?*
-        (let ((v1-14 (process-spawn
-                      snowcam
-                      :init pov-camera-init-by-other
-                      (-> self root-override trans)
-                      *snowcam-sg*
-                      (-> self give-fuel-cell-anim)
-                      0
-                      self
-                      '()
-                      :to self
-                      )
-                    )
-              )
-          (set! (-> (the-as (pointer snowcam) v1-14) 0 seq) (the-as uint 1))
-          )
-        (birth-pickup-at-point
-          (-> self fuel-cell-dest-pos)
-          (pickup-type fuel-cell)
-          (the float (-> self entity extra perm task))
-          #f
-          self
-          (the-as fact-info #f)
-          )
+      (let ((v1-14 (process-spawn
+                     snowcam
+                     :init pov-camera-init-by-other
+                     (-> self root-override trans)
+                     *snowcam-sg*
+                     (-> self give-fuel-cell-anim)
+                     0
+                     self
+                     '()
+                     :to self
+                     )
+                   )
+            )
+        (set! (-> (the-as (pointer snowcam) v1-14) 0 seq) (the-as uint 1))
         )
       (sound-play "cell-prize")
       (logior! (-> self mask) (process-mask sleep-code))
