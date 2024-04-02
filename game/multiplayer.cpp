@@ -1,6 +1,5 @@
 #include "multiplayer.h"
 #include "game/kernel/jak1/kscheme.h"
-#include "game/kernel/common/kmachine.h"
 
 // Custom logger
 #include <common/log/log.h>
@@ -22,7 +21,6 @@ bool hasInteractionsBuffered = false;
 
 // Create a server endpoint
 server ogSocket;
-int socketPort;
 websocketpp::connection_hdl connection;
 bool isConnectedOverSocket = false;
 bool isConnectedToGame = false;
@@ -259,8 +257,7 @@ void on_json_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg
 }
 
 
-void start_socket(int port) {
-  socketPort = port;
+void start_socket() {
   std::thread([]() {
     try {
       // Set logging settings
@@ -281,13 +278,13 @@ void start_socket(int port) {
       ogSocket.set_open_handler(&on_open);
       ogSocket.set_close_handler(&on_close);
 
-      // Listen on port
-      ogSocket.listen(socketPort);
+      // Listen on port 8111
+      ogSocket.listen(8111);
 
       // Start the server accept loop
       ogSocket.start_accept();
 
-      lg::warn("Starting Teamrun socket on port: {}", socketPort);
+      lg::info("Starting Teamrun socket on port: 8111");
 
       // Start the ASIO io_service run loop
       ogSocket.run();
