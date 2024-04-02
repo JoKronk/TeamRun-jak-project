@@ -5,8 +5,6 @@
 ;; name in dgo: progress
 ;; dgos: GAME, ENGINE
 
-(define-extern *enable-multiplayer-save-and-load* symbol)
-
 ;; DECOMP BEGINS
 
 (deftype progress-global-state (basic)
@@ -423,10 +421,7 @@
        (auto-save-command 'format-card 0 0 obj)
        )
       (((progress-screen save-game) (progress-screen load-game))
-       (if *enable-multiplayer-save-and-load*
-        (set! (-> obj option-index) 0)
-        (set! (-> obj option-index) (max 0 (-> *progress-state* last-slot-saved)))
-        )
+       (set! (-> obj option-index) (max 0 (-> *progress-state* last-slot-saved)))
        )
       (((progress-screen memcard-removed))
        (set! (-> *progress-state* last-slot-saved) 0)
