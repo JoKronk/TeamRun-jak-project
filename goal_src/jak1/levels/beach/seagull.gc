@@ -1289,9 +1289,7 @@
       (set! (-> self bird v1-13 0 teleport) #t)
       )
     (let ((gp-0 (-> self link next)))
-      (if *enable-ingame-cutscenes?*
-        (set-blackout-frames (seconds 2))
-        )
+      (set-blackout-frames (seconds 2))
       (suspend)
       (let ((a1-6 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-6 from) self)
@@ -1391,7 +1389,7 @@
     )
   )
 
-(defun beach-rock-trigger ()
+(defun-debug beach-rock-trigger ()
   (set! (-> (the-as
               seagullflock
               (search-process-tree *active-pool* (lambda ((arg0 process)) (= (-> arg0 type) seagullflock)))
