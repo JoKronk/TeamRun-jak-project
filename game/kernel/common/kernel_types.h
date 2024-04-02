@@ -1,7 +1,6 @@
 #pragma once
 
 #include "common/common_types.h"
-#include <string>
 
 //! Mirror of cpad-info
 #pragma pack(push, 1)
@@ -77,18 +76,6 @@ struct RemotePlayerInfo {
   int team_id;
 };
 
-struct InteractionInfo {
-  bool buffered;
-  int player_id;
-  u32 inter_type;
-  float inter_amount;
-  float inter_status;
-  std::string inter_name;
-  std::string inter_parent;
-  std::string inter_level;
-  s32 inter_cleanup;      // 0 or 1 (bool)
-};
-
 struct TeamrunPlayerInfo {
   s32 has_state_update;
   s32 debug_mode_active;
@@ -122,7 +109,6 @@ struct GameMode {
 
 const int MAX_MULTIPLAYER_COUNT = 20;
 const int MAX_COMMAND_COUNT = 3;
-const int MAX_INTERACTION_BUFFER_COUNT = 10;
 
 struct MultiplayerInfo {
   u32 teamrun_command;
