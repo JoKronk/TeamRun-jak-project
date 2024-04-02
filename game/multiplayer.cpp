@@ -86,12 +86,8 @@ void start_socket() {
   std::thread([]() {
     try {
       // Set logging settings
-      ogSocket.clear_access_channels(websocketpp::log::alevel::all);
-      ogSocket.set_access_channels(websocketpp::log::alevel::connect);
-
-      // For debugging Use
-      //ogSocket.set_access_channels(websocketpp::log::alevel::all);
-      //ogSocket.clear_access_channels(websocketpp::log::alevel::frame_payload);
+      ogSocket.set_access_channels(websocketpp::log::alevel::all);
+      ogSocket.clear_access_channels(websocketpp::log::alevel::frame_payload);
 
       // Initialize ASIO
       ogSocket.init_asio();
