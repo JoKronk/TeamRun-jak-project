@@ -188,23 +188,14 @@ void send_position_update() {
   if (gTeamrunInfo->has_buzzer_update) {
     json_payload["buzzer"] = {
       {"id", gTeamrunInfo->buzzer_id},
-      {"parentEname", Ptr<String>(gTeamrunInfo->buzzer_parent_ename).c()->data()},
+      {"ename", Ptr<String>(gTeamrunInfo->buzzer_container_ename).c()->data()},
       {"level", Ptr<String>(gTeamrunInfo->collectable_level_name).c()->data()}
     };
   }
 
   if (gTeamrunInfo->has_money_update) {
-    json_payload["orb"] = {
+    json_payload["money"] = {
       {"ename", Ptr<String>(gTeamrunInfo->money_ename).c()->data()},
-      {"parentEname", Ptr<String>(gTeamrunInfo->money_parent_ename).c()->data()},
-      {"level", Ptr<String>(gTeamrunInfo->collectable_level_name).c()->data()}
-    };
-  }
-
-  if (gTeamrunInfo->has_crate_update) {
-    json_payload["crate"] = {
-      {"ename", Ptr<String>(gTeamrunInfo->crate_ename).c()->data()},
-      {"type", Ptr<String>(gTeamrunInfo->crate_type).c()->data()},
       {"level", Ptr<String>(gTeamrunInfo->collectable_level_name).c()->data()}
     };
   }
