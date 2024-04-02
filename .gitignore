@@ -89,5 +89,3 @@ unifont-15.0.03.ttf
 .vscode/settings.json
 out/jak2/fr3.rar
 
-# third-party lib documentations
-/third-party/asio/doc/**
