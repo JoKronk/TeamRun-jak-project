@@ -1019,9 +1019,7 @@
 
 (defbehavior ja-abort-spooled-anim process-drawable ((arg0 spool-anim) (arg1 art-joint-anim) (arg2 int))
   "Abort a spooled animation."
-  (if (or (not (type-type? (-> self type) target)) (= self *target*))
-    (restore-load-state-and-cleanup *load-state*)
-    )
+  (restore-load-state-and-cleanup *load-state*)
   (str-play-stop (-> arg0 name))
   (set! (-> *art-control* active-stream) #f)
   (logclear! (-> self skel status) (janim-status drawn done))
