@@ -67,8 +67,6 @@ struct TeamrunPlayerInfo {
   s32 on_zoomer;
   s32 just_spawned;
   int cell_count;
-  int buzzer_count;
-  int money_count;
   int death_count;
 
   //task updates

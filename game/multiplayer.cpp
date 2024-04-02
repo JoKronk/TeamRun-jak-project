@@ -174,8 +174,6 @@ void send_position_update() {
         {"onZoomer", gTeamrunInfo->on_zoomer},
         {"justSpawned", gTeamrunInfo->just_spawned},
         {"cellCount", gTeamrunInfo->cell_count},
-        {"buzzerCount", gTeamrunInfo->buzzer_count},
-        {"orbCount", gTeamrunInfo->money_count},
         {"deathCount", gTeamrunInfo->death_count}
     };
   }
