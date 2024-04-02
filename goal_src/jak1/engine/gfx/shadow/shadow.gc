@@ -131,7 +131,6 @@
                arg4
                s4-0
                (new 'static 'pat-surface :noentity #x1)
-               *collide-work*
                )
              0.0
              )

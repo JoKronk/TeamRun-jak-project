@@ -53,7 +53,6 @@ nav-enemy-default-event-handler
                     self
                     t1-0
                     (new 'static 'pat-surface :noentity #x1)
-                    *collide-work*
                     )
                   )
             )

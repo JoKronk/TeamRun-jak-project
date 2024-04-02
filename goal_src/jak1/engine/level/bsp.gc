@@ -485,32 +485,32 @@
 ;; Collision
 ;;;;;;;;;;;;;;;
 
-(defmethod collide-with-box bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list) (coll-work collide-work))
+(defmethod collide-with-box bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list))
   "Top level collision with a box function. I think the arg0 length doesn't really matter here."
   (+! (-> *collide-stats* calls) 1)
   (let ((s4-0 (-> obj drawable-trees)))
     (dotimes (s3-0 (-> s4-0 length))
-      (collide-with-box (-> s4-0 data s3-0) arg0 arg1 coll-work)
+      (collide-with-box (-> s4-0 data s3-0) arg0 arg1)
       )
     )
   (none)
   )
 
-(defmethod collide-y-probe bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list) (coll-work collide-work))
+(defmethod collide-y-probe bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list))
   (+! (-> *collide-stats* calls) 1)
   (let ((s4-0 (-> obj drawable-trees)))
     (dotimes (s3-0 (-> s4-0 length))
-      (collide-y-probe (-> s4-0 data s3-0) arg0 arg1 coll-work)
+      (collide-y-probe (-> s4-0 data s3-0) arg0 arg1)
       )
     )
   (none)
   )
 
-(defmethod collide-ray bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list) (coll-work collide-work))
+(defmethod collide-ray bsp-header ((obj bsp-header) (arg0 int) (arg1 collide-list))
   (+! (-> *collide-stats* calls) 1)
   (let ((s4-0 (-> obj drawable-trees)))
     (dotimes (s3-0 (-> s4-0 length))
-      (collide-ray (-> s4-0 data s3-0) arg0 arg1 coll-work)
+      (collide-ray (-> s4-0 data s3-0) arg0 arg1)
       )
     )
   (none)
